@@ -30,7 +30,7 @@ public struct ContentView: View {
                         NavigationLink("Item \(i)", value: i)
                     }
                 }
-                .navigationTitle("Home")
+                .navigationTitle("Home List")
                 .navigationDestination(for: Int.self) { i in
                     Text("Item \(i)")
                         .font(.title)
