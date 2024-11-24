@@ -231,6 +231,8 @@ The Skip tools also use the Xcode DerivedData folder on your Mac… it may need 
 Xcode > Product > Show Build folder in Finder.
 I use the command line:  rm -rf DerivedData
 
+Many of the SwiftUI constants we use are Int - but in Skip land they need to be Double so lots of errors get fixed
+by just extending a Int literal from "6" to a Double "6.0" in your swiftUI code.
 
 Check for Skip upgrades often:  > skip upgrade
 
@@ -250,6 +252,22 @@ print(“iOS”)
 
 Note:  in the case of the Android branch - the code is written in Swift. 
 “Android-only code in #if SKIP blocks is still parsed by Xcode, so it must have valid Swift syntax. But it is excluded from your iOS build and invisible to the Swift compiler, which allows it to make any syntactically valid API call without causing Xcode errors.”
+
+Some very complex SwiftUI code need to be simplified to work with Skip.  An example:
+var backView: some View {
+	front()
+ 		.opacity(0)
+   		.overlay { back() }
+}
+// to Skip-ify this code because of errors like: type mismatch actual type is 'skip.ui.View' but 'skip.ui.ShapeStyle' was expected.
+var backView: some View {
+	Group {				// wrap the ShapeStyle in a Group for a View type
+		front()
+			.opacity(0.0)	// convert to double for Skip
+   			.overlay { back() }
+ 	}
+  }
+
 
 See Also:  https://skip.tools/docs/platformcustomization/
 
