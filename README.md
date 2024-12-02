@@ -209,6 +209,7 @@ Deploying to the App Store & Play Store - are another hurdle… for another time
 ## Frequent Issues and Resolutions:
 
 Do NOT rename your project or enclosing folders.  Skip has used the absolute path to it’s resources.
+I found that if you store your project in a Repo - and do a fresh clone - you CAN change the name of the project folder!
 
 Do NOT use a comment with “// SKIP some note to remember” the all caps version of that comment will be found by the Skip Transpiler and it will attempt to follow the unknow command.  Use mixed case in comments:  // Skip is an acceptable comment.
 
